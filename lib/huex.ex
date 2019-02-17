@@ -117,7 +117,7 @@ defmodule Huex do
   """
   @spec open_streaming(Bridge.t) :: Bridge.t | {:error, atom}
   def open_streaming(bridge) do
-    case open_streaming_dtls(bridge.host, bridge.username, bridge.clientkey) do
+    case open_streaming_dtls(bridge.host, to_charlist(bridge.username), bridge.clientkey) do
       {:ok, socket} -> update_bridge_socket(socket, bridge)
       {:error, reason} -> {:error, reason}
     end
